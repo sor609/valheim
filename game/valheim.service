@@ -1,0 +1,17 @@
+[Unit]
+Description=Valheim service
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+RemainAfterExit=yes
+User=valheim
+WorkingDirectory=/home/valheim/game
+ExecStart=/home/valheim/game/valheim.sh start
+ExecStop=/home/valheim/game/valheim.sh stop
+
+[Install]
+WantedBy=multi-user.target

@@ -67,7 +67,8 @@ start_server () {
 stop_server () {
 	if check_running; then
 		VAL_PID=`cat $HOMEDIR/.pid`
-		kill $VAL_PID
+		# SIGINT saves worlds file before stopping server
+		kill -s SIGINT $VAL_PID
 		sleep 10
 	else
 		echo "`date '+%Y-%m-%d %H:%M:%S'` UTC - Server already stopped" 
